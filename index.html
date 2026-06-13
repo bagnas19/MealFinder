@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MealFinder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo" onclick="showSection('home')">MealFinder</div>
+                <div class="nav-links">
+                    <a href="#" onclick="showSection('home')">Home</a>
+                    <a href="#" onclick="showSection('search')">Search</a>
+                    <a href="#" onclick="showSection('favorites')">Favorites (<span id="favCount">0</span>)</a>
+                </div>
+            </nav>
+            
+            <div class="header-content">
+                <h1>Discover Delicious Recipes</h1>
+                <p>Find new foods from around the world</p>
+                
+               <div class="translator-box">
+    <label>🌐 Translate:</label>
+    <select id="languageSelect">
+            <option value="en" selected>English</option>
+            <option value="zh">中文 (Chinese)</option>
+            <option value="ja">日本語 (Japanese)</option>
+            <option value="ko">한국어 (Korean)</option>
+            <option value="vi">Tiếng Việt (Vietnamese)</option>
+            <option value="th">ภาษาไทย (Thai)</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="ms">Bahasa Melayu</option>
+            <option value="tl">Filipino (Tagalog)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+            <option value="bn">বাংলা (Bengali)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="af">Afrikaans</option>
+            <option value="sw">Swahili</option>
+            <option value="zu">Zulu</option>
+            <option value="es">Español (Spanish)</option>
+            <option value="pt">Português (Portuguese)</option>
+            <option value="fr">Français (French)</option>
+            <option value="de">Deutsch (German)</option>
+            <option value="it">Italiano (Italian)</option>
+            <option value="nl">Nederlands (Dutch)</option>
+            <option value="pl">Polski (Polish)</option>
+            <option value="ru">Русский (Russian)</option>
+            <option value="uk">Українська (Ukrainian)</option>
+            <option value="el">Ελληνικά (Greek)</option>
+            <option value="tr">Türkçe (Turkish)</option>
+            <option value="sv">Svenska (Swedish)</option>
+            <option value="da">Dansk (Danish)</option>
+            <option value="no">Norsk (Norwegian)</option>
+            <option value="fi">Suomi (Finnish)</option>
+            <option value="cs">Čeština (Czech)</option>
+            <option value="hu">Magyar (Hungarian)</option>
+            <option value="ro">Română (Romanian)</option>
+            <option value="ar">العربية (Arabic)</option>
+            <option value="he">עברית (Hebrew)</option>
+            <option value="fa">فارسی (Persian)</option>
+    </select>
+    <button onclick="translatePage()">Go</button>
+</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section id="homeSection">
+            <div class="section-header">
+                <h2>Recommended For You</h2>
+                <p>Popular meals to get you started</p>
+            </div>
+            <div id="recommendedGrid" class="results-grid">
+                <div class="loading-container">
+                    <div class="spinner"></div>
+                    <p>Loading recommendations...</p>
+                </div>
+            </div>
+            
+            <div class="section-header" style="margin-top: 50px;">
+                <h2>Your Favorites</h2>
+                <p>Meals you've saved</p>
+            </div>
+            <div id="homeFavoritesGrid" class="results-grid">
+                <div class="empty-state">
+                    <p>No favorites yet. Click the heart on any meal to save it!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="searchSection" class="hidden">
+            <div class="search-box">
+                <form id="searchForm">
+                    <input type="text" id="searchInput" placeholder="Search for a meal (e.g., Pasta, Curry, Chicken)...">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+
+            <div class="search-tags">
+                <span>Popular:</span>
+                <button onclick="quickSearch('Chicken')">Chicken</button>
+                <button onclick="quickSearch('Pasta')">Pasta</button>
+                <button onclick="quickSearch('Beef')">Beef</button>
+                <button onclick="quickSearch('Seafood')">Seafood</button>
+                <button onclick="searchDesserts()">Desserts</button>
+                <button onclick="quickSearch('Vegetarian')">Vegetarian</button>
+            </div>
+
+            <h2 id="searchTitle" class="section-title hidden">Search Results</h2>
+            
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Searching for delicious meals...</p>
+            </div>
+
+            <div id="error" class="error-message hidden">
+                <p><span id="errorMessage"></span></p>
+            </div>
+
+            <div id="results" class="results-grid"></div>
+
+            <div id="noResults" class="hidden">
+                <p> No meals found. Try a different search term.</p>
+            </div>
+        </section>
+
+        <section id="favoritesSection" class="hidden">
+            <div class="section-header">
+                <h2> Your Favorite Meals</h2>
+                <p>All your saved recipes</p>
+            </div>
+            <div id="favoritesGrid" class="results-grid">
+                <div class="empty-state">
+                    <p>No favorites yet. Click the heart on any meal!</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Powered by <a href="https://www.themealdb.com/" target="_blank">TheMealDB API</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
